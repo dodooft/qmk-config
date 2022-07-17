@@ -92,11 +92,38 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX, XXXXXXX,                       KC_DEL, KC_PGUP, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, XXXXXXX,                      KC_HOME, KC_PGDN,  KC_END, XXXXXXX, XXXXXXX, XXXXXXX,
+      RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, XXXXXXX,                      KC_HOME, KC_PGDN,  KC_END, XXXXXXX, XXXXXXX,   TG(4),
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI, _______,  KC_SPC,     KC_ENT, _______, KC_RALT
+                                          KC_LGUI, _______,  KC_SPC,     KC_ENT, _______, KC_LALT
                                       //`--------------------------'  `--------------------------'
+  ),
+
+  // Games, just starcraft for now
+
+  [4] = LAYOUT_split_3x6_3(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+       DO_ESC,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   TG(0),
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          KC_LGUI,   MO(5),  KC_SPC,    XXXXXXX, _______, XXXXXXX
+                                      //`--------------------------'  `--------------------------'
+  ),
+
+  [5] = LAYOUT_split_3x6_3(
+  //|----------+----------+----------+----------+----------+----------|                    |--------+--------+--------+--------+--------+--------|
+           KC_1,      KC_2,      KC_3,      KC_4,      KC_5,      KC_6,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|----------+----------+----------+----------+----------+----------|                    |--------+--------+--------+--------+--------+--------|
+     LSFT(KC_1),LSFT(KC_2),LSFT(KC_3),LSFT(KC_4),LSFT(KC_5),LSFT(KC_6),                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|----------+----------+----------+----------+----------+----------|                    |--------+--------+--------+--------+--------+--------|
+     LCTL(KC_1),LCTL(KC_2),LCTL(KC_3),LCTL(KC_4),LCTL(KC_5),LCTL(KC_6),                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|----------+----------+----------+----------+----------+----------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                                      KC_LGUI, _______,  KC_SPC,    XXXXXXX, _______, XXXXXXX
+                                                  //`--------------------------'  `--------------------------'
   )
+
 };
 
 bool process_record_user (uint16_t keycode, keyrecord_t *record)
@@ -152,6 +179,12 @@ uint32_t layer_state_set_user (uint32_t state)
 			break;
 		case 3:
 			rgblight_sethsv_noeeprom (45, 255, 155);
+			break;
+		case 4:
+			rgblight_sethsv_noeeprom (210, 100, 48);
+			break;
+		case 5:
+			rgblight_sethsv_noeeprom (39, 85, 91);
 			break;
 		default: //  for any other layers, or the default layer
 			break;
